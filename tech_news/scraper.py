@@ -2,6 +2,7 @@ import requests
 import time
 from parsel import Selector
 import re
+from tech_news.database import create_news
 
 
 # Requisito 1
@@ -27,9 +28,9 @@ def fetch(url):
 def scrape_novidades(html_content):
     selector = Selector(text=html_content)
 
-    news_urls = selector.css("h2.entry-title a::attr(href)").getall()
+    posts_urls = selector.css("h2.entry-title a::attr(href)").getall()
 
-    return news_urls
+    return posts_urls
 
 
 # Requisito 3
@@ -57,7 +58,7 @@ def scrape_noticia(html_content):
     tags = selector.css(".post-tags a::text").getall()
     category = selector.css(".meta-category span.label::text").get()
 
-    news = {
+    post = {
         "url": url,
         "title": title.strip(),
         "timestamp": timestamp,
@@ -68,9 +69,29 @@ def scrape_noticia(html_content):
         "category": category,
     }
 
-    return news
+    return post
 
 
 # Requisito 5
 def get_tech_news(amount):
-    """Seu código deve vir aqui"""
+    page = fetch("https://blog.betrybe.com/")
+    posts_urls = []
+
+    while len(posts_urls) < amount:
+        page_posts_urls = scrape_novidades(page)
+        posts_urls.extend(page_posts_urls)
+
+        next_page_url = scrape_next_page_link(page)
+        page = fetch(next_page_url)
+
+    posts_urls = posts_urls[:amount]
+    posts = []
+
+    for post_url in posts_urls:
+        post_page = fetch(post_url)
+        post = scrape_noticia(post_page)
+        posts.append(post)
+
+    create_news(posts)
+
+    return posts
