@@ -1,24 +1,49 @@
 import sys
+from tech_news.scraper import get_tech_news
+from tech_news.analyzer.search_engine import (
+    search_by_title,
+    search_by_date,
+    search_by_tag,
+    search_by_category,
+)
+from tech_news.analyzer.ratings import top_5_news, top_5_categories
 
 
 def insert_news_in_db_option():
-    input("Digite quantas notícias serão buscadas:")
+    news_amount = input("Digite quantas notícias serão buscadas:")
+    get_tech_news(news_amount)
 
 
 def find_news_by_title_option():
-    input("Digite o título:")
+    title = input("Digite o título:")
+    print(search_by_title(title))
 
 
 def find_news_by_date_option():
-    input("Digite a data no formato aaaa-mm-dd:")
+    date = input("Digite a data no formato aaaa-mm-dd:")
+    print(search_by_date(date))
 
 
 def find_news_by_tag_option():
-    input("Digite a tag:")
+    tag = input("Digite a tag:")
+    print(search_by_tag(tag))
 
 
 def find_news_by_category_option():
-    input("Digite a categoria:")
+    category = input("Digite a categoria:")
+    print(search_by_category(category))
+
+
+def list_top_5_news_option():
+    print(top_5_news())
+
+
+def list_top_5_categories_option():
+    print(top_5_categories())
+
+
+def exit_option():
+    print("Encerrando script\n")
 
 
 # Requisito 12
@@ -36,11 +61,14 @@ def analyzer_menu():
     )
 
     menu_options = {
-        0: insert_news_in_db_option,
-        1: find_news_by_title_option,
-        2: find_news_by_date_option,
-        3: find_news_by_tag_option,
-        4: find_news_by_category_option,
+        "0": insert_news_in_db_option,
+        "1": find_news_by_title_option,
+        "2": find_news_by_date_option,
+        "3": find_news_by_tag_option,
+        "4": find_news_by_category_option,
+        "5": list_top_5_news_option,
+        "6": list_top_5_categories_option,
+        "7": exit_option,
     }
 
     try:
