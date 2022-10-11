@@ -28,6 +28,6 @@ def top_5_categories():
 
     categories_count_sorted = sorted(
         categories_count.items(), key=lambda x: (-x[1], x[0])
-    )
+    )[:5]
 
     return [category_count[0] for category_count in categories_count_sorted]
