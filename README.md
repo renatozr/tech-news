@@ -1,10 +1,10 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Projeto Tech News
+
+#### Este projeto tem como principal objetivo fazer consultas na web usando Python, buscando notícias sobre tecnologia. As notícias foram obtidas através da raspagem do blog da Trybe.
+
+<br />
+
+Arquivos escritos por mim:
+tech_news/analyzer/*
+tech_news/menu.py
+tech_news/scraper.py
