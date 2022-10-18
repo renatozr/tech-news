@@ -4,7 +4,4 @@
 
 <br />
 
-Arquivos escritos por mim:
-tech_news/analyzer/*
-tech_news/menu.py
-tech_news/scraper.py
+<p>Arquivos escritos por mim: tech_news/analyzer/*, tech_news/menu.py, tech_news/scraper.py</p>
